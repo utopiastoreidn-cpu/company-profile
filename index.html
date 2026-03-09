@@ -8,216 +8,195 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .gradient-bg { background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); }
+        .hero-bg { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
 
-    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <nav class="fixed w-full z-50 bg-white/90 backdrop-blur-sm border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex-shrink-0">
-                    <span class="text-2xl font-bold text-blue-700 underline decoration-blue-400">UTOPIA</span>
-                    <span class="text-xs block text-slate-500 tracking-widest uppercase">Project</span>
+                    <span class="text-2xl font-black text-blue-800 tracking-tighter">UTOPIA STORE</span>
                 </div>
-                <div class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
-                    <a href="#about" class="hover:text-blue-600 transition">Tentang</a>
-                    <a href="#services" class="hover:text-blue-600 transition">Layanan</a>
-                    <a href="#pricing" class="hover:text-blue-600 transition">Biaya</a>
-                    <a href="#sop" class="hover:text-blue-600 transition text-red-600">Kebijakan</a>
+                <div class="hidden md:flex space-x-8 text-sm font-semibold text-slate-600 uppercase tracking-wider">
+                    <a href="#about" class="hover:text-blue-700 transition">Profil</a>
+                    <a href="#services" class="hover:text-blue-700 transition">Layanan</a>
+                    <a href="#pricing" class="hover:text-blue-700 transition">Tarif</a>
+                    <a href="#sop" class="text-red-600 hover:text-red-800 transition">SOP</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <section class="gradient-bg text-white pt-32 pb-20 px-4">
-        <div class="max-w-7xl mx-auto text-center">
-            <h1 class="text-4xl md:text-6xl font-extrabold mb-4 tracking-tight">One Digital Transaction Center</h1>
-            <p class="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto font-light">
-                Solusi terlengkap untuk segala kebutuhan transaksi digital dan finansial Anda.
+    <header class="hero-bg text-white pt-32 pb-24 px-4">
+        <div class="max-w-5xl mx-auto text-center">
+            <h1 class="text-4xl md:text-6xl font-extrabold mb-6">One Digital Transaction Center</h1>
+            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto font-light leading-relaxed">
+                Pusat layanan transaksi digital terpercaya sejak 2020. Memberikan kemudahan akses keuangan bagi masyarakat sekitar.
             </p>
-            <div class="mt-8 flex justify-center gap-4">
-                <span class="px-4 py-2 bg-blue-500/20 rounded-full border border-blue-400/30 text-sm">Since 2020</span>
-                <span class="px-4 py-2 bg-green-500/20 rounded-full border border-green-400/30 text-sm">Legal Secara Hukum</span>
-            </div>
         </div>
-    </section>
+    </header>
 
-    <section id="about" class="py-20 px-4">
-        <div class="max-w-5xl mx-auto">
-            <div class="grid md:grid-cols-2 gap-12">
-                <div>
-                    <h2 class="text-blue-700 font-bold uppercase tracking-widest text-sm mb-2">About Us</h2>
-                    <h3 class="text-3xl font-bold mb-6">Utopia Store</h3>
-                    <p class="text-slate-600 leading-relaxed mb-6 text-lg">
-                        Utopia Store adalah pusat layanan transaksi digital yang telah berdiri sejak tahun 2020[cite: 9]. Kami berawal dari layanan Top Up dan pembelian Item game, dan setelah 5 tahun berdiri, kini kami memperluas jangkauan layanan untuk memudahkan akses layanan pembayaran digital[cite: 9].
-                    </p>
-                    <p class="text-slate-600 leading-relaxed">
-                        Kami terus berusaha agar dapat bermanfaat bagi masyarakat sekitar dan memberikan kemudahan akses layanan digital[cite: 10].
-                    </p>
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+                <h2 class="text-sm font-bold text-blue-600 uppercase tracking-widest mb-4">Tentang Kami</h2>
+                <p class="text-slate-600 text-lg leading-relaxed mb-6">
+                    Utopia Store berawal dari layanan Top Up game. Setelah 5 tahun berdiri, kami kini memperluas jangkauan untuk mengakomodasi segala keperluan digital masyarakat, mulai dari cetak karya hingga akses keuangan digital.
+                </p>
+                <div class="border-l-4 border-blue-600 pl-6 py-2">
+                    <h3 class="font-bold text-xl italic mb-2">Visi & Misi</h3>
+                    <p class="text-slate-500 text-sm">Menghadirkan layanan perbankan yang dekat dengan rumah, sehingga masyarakat tidak perlu pergi jauh ke bank untuk bertransaksi.</p>
                 </div>
-                <div class="space-y-6">
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h4 class="font-bold text-blue-700 mb-2 italic">Visi</h4>
-                        <p class="text-sm text-slate-600">Mengakomodasi segala jenis keperluan masyarakat akan kemudahan akses layanan berbasis digital, mulai dari cetak karya, dokumentasi udara, hingga kemudahan keuangan digital[cite: 14].</p>
-                    </div>
-                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-                        <h4 class="font-bold text-blue-700 mb-2 italic">Misi (Langkah Awal)</h4>
-                        <p class="text-sm text-slate-600">Menghadirkan layanan perbankan mirip BRI Link untuk memudahkan masyarakat bertransaksi keuangan tanpa perlu pergi ke bank yang berjarak jauh dari rumah[cite: 15].</p>
-                    </div>
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-blue-50 p-8 rounded-2xl text-center">
+                    <span class="block text-3xl font-bold text-blue-700">5+</span>
+                    <span class="text-xs text-blue-600 uppercase">Tahun Berdiri</span>
+                </div>
+                <div class="bg-slate-100 p-8 rounded-2xl text-center">
+                    <span class="block text-3xl font-bold text-slate-700">10+</span>
+                    <span class="text-xs text-slate-600 uppercase">Layanan Aktif</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="services" class="py-20 bg-slate-100 px-4">
-        <div class="max-w-7xl mx-auto text-center mb-16">
-            <h2 class="text-3xl font-bold">Layanan Kami Saat Ini</h2>
-            <p class="text-slate-500 mt-2 italic">Berikut adalah sepuluh layanan yang tersedia di Utopia Store[cite: 38]:</p>
+    <section id="services" class="py-20 bg-slate-50 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Layanan Unggulan</h2>
+                <div class="h-1 w-20 bg-blue-600 mx-auto"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h4 class="text-blue-700 font-bold mb-6 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3">💰</span> Keuangan & Bank
+                    </h4>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li>• Transfer Bank (BI-Fast) & RDN</li>
+                        <li>• Setor & Tarik Tunai</li>
+                        <li>• Pembayaran VA & PPOB</li>
+                        <li>• Layanan Mirip BRI Link</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h4 class="text-blue-700 font-bold mb-6 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3">🎮</span> Digital & Game
+                    </h4>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li>• Top Up E-Wallet</li>
+                        <li>• Top Up Item Game</li>
+                        <li>• Mitra Shopee Partner</li>
+                        <li>• IoT Planner</li>
+                    </ul>
+                </div>
+                <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-sm">
+                    <h4 class="text-blue-700 font-bold mb-6 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3">🚁</span> Proyek Kreatif
+                    </h4>
+                    <ul class="space-y-3 text-slate-600 text-sm">
+                        <li>• Utopia Digital Print & Design</li>
+                        <li>• Sky Capture (Foto/Video Drone)</li>
+                        <li>• Cetak Undangan Digital</li>
+                        <li>• Utopia Management</li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-blue-600">
-                <h4 class="font-bold mb-4 text-slate-800">Financial Services</h4>
-                <ul class="text-sm space-y-2 text-slate-600">
-                    <li>• Transfer Bank (BI-Fast) [cite: 19, 28]</li>
-                    <li>• Transfer RDN [cite: 29]</li>
-                    <li>• Setor Tunai [cite: 32]</li>
-                    <li>• Tarik Tunai [cite: 37]</li>
-                    <li>• Pembayaran VA [cite: 34]</li>
-                </ul>
+    </section>
+
+    <section id="pricing" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-12 italic">Daftar Biaya Admin</h2>
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="overflow-hidden rounded-2xl border border-slate-200">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-slate-900 text-white font-bold">
+                                <th class="p-4">Transfer / E-Wallet</th>
+                                <th class="p-4 text-right">Admin</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr><td class="p-4">Rp 10.000 - Rp 50.000</td><td class="p-4 text-right font-bold">Rp 3.000</td></tr>
+                            <tr><td class="p-4">Rp 51.000 - Rp 500.000</td><td class="p-4 text-right font-bold">Rp 5.000</td></tr>
+                            <tr><td class="p-4">Rp 501.000 - Rp 1.000.000</td><td class="p-4 text-right font-bold">Rp 10.000</td></tr>
+                            <tr><td class="p-4 italic text-slate-400">Dan seterusnya mengikuti kelipatan nominal</td><td class="p-4 text-right font-bold">...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="overflow-hidden rounded-2xl border border-slate-200">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="bg-blue-800 text-white font-bold">
+                                <th class="p-4">Setor / Tarik Tunai</th>
+                                <th class="p-4 text-right">Admin</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr><td class="p-4">Rp 50.000 - Rp 500.000</td><td class="p-4 text-right font-bold">Rp 10.000</td></tr>
+                            <tr><td class="p-4">Rp 501.000 - Rp 1.000.000</td><td class="p-4 text-right font-bold">Rp 15.000</td></tr>
+                            <tr><td class="p-4">Rp 1.001.000 - Rp 1.500.000</td><td class="p-4 text-right font-bold">Rp 20.000</td></tr>
+                            <tr><td class="p-4">Rp 1.501.000 - Rp 2.000.000</td><td class="p-4 text-right font-bold">Rp 25.000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-indigo-600">
-                <h4 class="font-bold mb-4 text-slate-800">Digital & Game</h4>
-                <ul class="text-sm space-y-2 text-slate-600">
-                    <li>• Top Up E-Wallet [cite: 30]</li>
-                    <li>• Top Up Game [cite: 31]</li>
-                    <li>• Pembayaran PPOB [cite: 33]</li>
-                    <li>• Mitra Shopee [cite: 35]</li>
-                </ul>
+            
+            <div class="mt-12 bg-slate-50 p-8 rounded-3xl border border-dashed border-slate-300 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div><p class="text-xs text-slate-500 uppercase">Print Hitam Putih</p><p class="font-bold">Rp 500/lbr</p></div>
+                <div><p class="text-xs text-slate-500 uppercase">Print Berwarna</p><p class="font-bold">Rp 1.000/lbr</p></div>
+                <div><p class="text-xs text-slate-500 uppercase">Cetak Foto</p><p class="font-bold italic text-blue-600 underline">Cek Ukuran</p></div>
+                <div><p class="text-xs text-slate-500 uppercase">Dokumen</p><p class="font-bold italic text-red-500">Akses Terbatas</p></div>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-purple-600">
-                <h4 class="font-bold mb-4 text-slate-800">Proyek Lanjutan</h4>
-                <ul class="text-sm space-y-2 text-slate-600">
-                    <li>• Utopia Digital Print [cite: 21]</li>
-                    <li>• Utopia Design [cite: 22]</li>
-                    <li>• Utopia Management [cite: 23]</li>
-                    <li>• Utopia Sky Capture (Drone) [cite: 24]</li>
-                    <li>• IoT Planner [cite: 36]</li>
-                </ul>
+        </div>
+    </section>
+
+    <section id="sop" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto bg-white rounded-[2.5rem] p-10 shadow-2xl border-2 border-red-500 relative overflow-hidden">
+            <div class="absolute top-0 right-0 bg-red-500 text-white px-6 py-2 rounded-bl-2xl font-bold uppercase text-xs tracking-widest">PENTING</div>
+            <h2 class="text-2xl font-bold mb-8 text-red-600 italic">Kebijakan Transaksi (SOP)</h2>
+            <div class="space-y-6">
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-4 font-bold">01.</span>
+                    <p class="text-slate-700">Tidak menerima Transfer dengan kode unik kecuali untuk PPOB (Listrik, BPJS, Cicilan, dll).</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-4 font-bold">02.</span>
+                    <p class="text-slate-700 font-bold uppercase">TIDAK BISA KASBON. Kami tidak melayani sistem "Transfer Sekarang Bayar Nanti".</p>
+                </div>
+                <div class="flex items-start">
+                    <span class="text-red-500 mr-4 font-bold">03.</span>
+                    <p class="text-slate-700 italic underline">Hanya melayani transaksi di store. Tidak melayani transaksi via WhatsApp demi keamanan bersama.</p>
+                </div>
             </div>
-            <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition border-t-4 border-slate-600">
-                <h4 class="font-bold mb-4 text-slate-800">Dukungan Mitra</h4>
-                <p class="text-xs text-slate-500 leading-relaxed uppercase">
-                    BRI, BNI, BCA, Mandiri, Gopay, DANA, OVO, Shopee, MAF, Adira, WOM, FIFGROUP .
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-400 py-16 px-4">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12">
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Utopia Store</h4>
+                <p class="text-sm">PT. Utopia Digital Technology</p>
+                <p class="text-sm mt-2">Memberikan manfaat dan kemudahan akses layanan digital bagi masyarakat.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Hubungi Kami</h4>
+                <p class="text-sm">📞 +62-3460-1373</p>
+                <p class="text-sm">📧 utopiastore.idn@gmail.com</p>
+                <p class="text-sm italic text-blue-400">utopiaproject.id</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-lg mb-4">Metode & Mitra</h4>
+                <p class="text-[10px] uppercase leading-relaxed tracking-tighter">
+                    BRI, BNI, BCA, Mandiri, Gopay, DANA, OVO, Shopee, MAF, Adira, WOM, FIFGROUP.
                 </p>
             </div>
         </div>
-    </section>
-
-    <section id="pricing" class="py-20 px-4">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-bold mb-4 italic">Biaya Administrasi</h2>
-                <p class="text-slate-500">Biaya yang dibebankan sesuai dengan peraturan perusahaan dan layanan BI-Fast[cite: 43, 44].</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-8">
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                    <div class="bg-blue-700 text-white p-4 font-bold text-center">Transfer Bank / E-Wallet [cite: 56]</div>
-                    <table class="w-full text-sm">
-                        <tr class="bg-slate-50 border-b font-semibold">
-                            <td class="p-4">Nominal Transaksi</td>
-                            <td class="p-4 text-right text-blue-700">Biaya Admin</td>
-                        </tr>
-                        <tr class="border-b"><td class="p-4">Rp 10.000 - Rp 50.000 [cite: 58]</td><td class="p-4 text-right font-bold text-blue-700">Rp 3.000 [cite: 58]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 51.000 - Rp 500.000 [cite: 58]</td><td class="p-4 text-right font-bold text-blue-700">Rp 5.000 [cite: 58]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 501.000 - Rp 1.000.000 [cite: 58]</td><td class="p-4 text-right font-bold text-blue-700">Rp 10.000 [cite: 58]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 1.001.000 - Rp 1.500.000 [cite: 58]</td><td class="p-4 text-right font-bold text-blue-700">Rp 15.000 [cite: 58]</td></tr>
-                    </table>
-                </div>
-
-                <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-sm">
-                    <div class="bg-indigo-700 text-white p-4 font-bold text-center">Setor / Tarik Tunai [cite: 62]</div>
-                    <table class="w-full text-sm">
-                        <tr class="bg-slate-50 border-b font-semibold">
-                            <td class="p-4">Nominal Transaksi</td>
-                            <td class="p-4 text-right text-indigo-700">Biaya Admin</td>
-                        </tr>
-                        <tr class="border-b"><td class="p-4">Rp 50.000 - Rp 500.000 [cite: 62]</td><td class="p-4 text-right font-bold text-indigo-700">Rp 10.000 [cite: 62]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 501.000 - Rp 1.000.000 [cite: 62]</td><td class="p-4 text-right font-bold text-indigo-700">Rp 15.000 [cite: 62]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 1.001.000 - Rp 1.500.000 [cite: 62]</td><td class="p-4 text-right font-bold text-indigo-700">Rp 20.000 [cite: 62]</td></tr>
-                        <tr class="border-b"><td class="p-4">Rp 1.501.000 - Rp 2.000.000 [cite: 62]</td><td class="p-4 text-right font-bold text-indigo-700">Rp 25.000 [cite: 62]</td></tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="mt-8 bg-slate-800 text-white rounded-2xl p-6 grid md:grid-cols-4 gap-4 text-center">
-                <div>
-                    <span class="block text-slate-400 text-xs uppercase">Cetak Hitam Putih [cite: 66]</span>
-                    <span class="text-xl font-bold">Rp 500 /Lembar [cite: 71, 72]</span>
-                </div>
-                <div>
-                    <span class="block text-slate-400 text-xs uppercase">Print Berwarna [cite: 67]</span>
-                    <span class="text-xl font-bold">Rp 1.000 /Lembar [cite: 73]</span>
-                </div>
-                <div>
-                    <span class="block text-slate-400 text-xs uppercase">Cetak Foto [cite: 68]</span>
-                    <span class="text-xl font-bold italic">Tergantung Ukuran [cite: 74]</span>
-                </div>
-                <div>
-                    <span class="block text-slate-400 text-xs uppercase">Pembuatan Dokumen [cite: 69]</span>
-                    <span class="text-xl font-bold italic">Akses Terbatas [cite: 74]</span>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="sop" class="py-20 bg-red-50 px-4 border-y border-red-100">
-        <div class="max-w-4xl mx-auto">
-            <div class="bg-white p-8 rounded-3xl shadow-xl border-l-8 border-red-600">
-                <h2 class="text-2xl font-bold text-red-600 mb-6 flex items-center italic">
-                    <span class="mr-3">⚠️</span> Standar Operasional Prosedur (SOP)
-                </h2>
-                <ul class="space-y-6 text-slate-700">
-                    <li class="flex items-start">
-                        <span class="font-bold text-red-600 mr-2">01.</span>
-                        <span>Utopia Store tidak akan menerima Transfer dengan kode unik selain PPOB (Listrik, BPJS, Tagihan, Cicilan, Asuransi)[cite: 89, 90].</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="font-bold text-red-600 mr-2">02.</span>
-                        <span><strong>TIDAK BISA KASBON</strong> atau Transfer sekarang bayar nanti. Ini adalah SOP Perusahaan[cite: 90].</span>
-                    </li>
-                    <li class="flex items-start">
-                        <span class="font-bold text-red-600 mr-2">03.</span>
-                        <span>Setiap transaksi dan pembayaran <strong>hanya bisa dilakukan di store</strong>. Kami tidak melayani transaksi melalui WhatsApp[cite: 91].</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <footer id="contact" class="bg-slate-900 text-slate-400 py-16 px-4">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-b border-slate-800 pb-12">
-            <div>
-                <h4 class="text-white font-bold mb-4 italic">Utopiaproject Industries [cite: 94]</h4>
-                <p class="text-sm">Utopia Store dioperasikan oleh <br><strong>PT. Utopia Digital Technology</strong>[cite: 95].</p>
-                <p class="mt-4 text-xs">Semua transaksi legal secara hukum[cite: 39].</p>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 italic">Kontak</h4>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">📞 +62-3460-1373 [cite: 96]</li>
-                    <li class="flex items-center">📧 utopiastore.idn@gmail.com [cite: 97]</li>
-                    <li class="flex items-center">🌐 utopiaproject.id [cite: 98]</li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-bold mb-4 italic">Engagement</h4>
-                <p class="text-sm italic">"Kami berharap dapat menjalin kerja sama dan mengeksplorasi peluang kolaborasi dengan Anda"[cite: 99].</p>
-            </div>
-        </div>
-        <div class="max-w-7xl mx-auto pt-8 text-center text-xs">
-            &copy; 2026 Utopia Store | One Digital Transaction Center.
+        <div class="max-w-7xl mx-auto border-t border-slate-800 mt-12 pt-8 text-center text-xs tracking-widest uppercase">
+            &copy; 2026 Utopiaproject Industries. Semua transaksi legal secara hukum.
         </div>
     </footer>
 

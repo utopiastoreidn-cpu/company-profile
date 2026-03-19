@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,11 +8,74 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; scroll-behavior: smooth; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
         .bg-gradient-premium { background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #1e40af 100%); }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
         .text-gradient { background: linear-gradient(to right, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
+<script>
+    function updateStoreStatus() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        
+        // Elemen UI
+        const container = document.getElementById('status-container');
+        const ping = document.getElementById('status-ping');
+        const dot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const timeDisplay = document.getElementById('time-display');
+
+        // Format waktu digital (00:00:00)
+        const timeString = now.toLocaleTimeString('id-ID', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+        timeDisplay.innerText = timeString + " WIB";
+
+        // Logika Jam Operasional (08:00 - 19:59)
+        const isOpen = hours >= 8 && hours < 20;
+
+        if (isOpen) {
+            // Tampilan saat BUKA (Hijau)
+            container.classList.remove('bg-red-500/20', 'border-red-400/30');
+            container.classList.add('bg-green-500/20', 'border-green-400/30');
+            
+            ping.classList.remove('bg-red-400');
+            ping.classList.add('bg-green-400');
+            
+            dot.classList.remove('bg-red-500');
+            dot.classList.add('bg-green-500');
+            
+            statusText.innerText = "Store is Open Now";
+            statusText.classList.add('text-green-400');
+            statusText.classList.remove('text-red-400');
+        } else {
+            // Tampilan saat TUTUP (Merah)
+            container.classList.remove('bg-green-500/20', 'border-green-400/30');
+            container.classList.add('bg-red-500/20', 'border-red-400/30');
+            
+            ping.classList.remove('bg-green-400', 'animate-ping'); // Matikan animasi ping saat tutup agar lebih tenang
+            ping.classList.add('bg-red-400');
+            
+            dot.classList.remove('bg-green-500');
+            dot.classList.add('bg-red-500');
+            
+            statusText.innerText = "Store is Closed";
+            statusText.classList.add('text-red-400');
+            statusText.classList.remove('text-green-400');
+        }
+    }
+
+    // Jalankan setiap detik
+    setInterval(updateStoreStatus, 1000);
+    // Jalankan langsung saat halaman dimuat
+    updateStoreStatus();
+</script>
 <body class="bg-slate-50 text-slate-900 leading-relaxed">
 
     <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
@@ -24,7 +88,7 @@
                 <div class="hidden md:flex space-x-10 text-sm font-bold uppercase tracking-widest text-slate-600">
                     <a href="#about" class="hover:text-blue-600 transition">Profil</a>
                     <a href="#services" class="hover:text-blue-600 transition">Layanan</a>
-                    <a href="#pricing" class="hover:text-blue-600 transition">Tarif</a>
+                    <a href="#pricing" class="hover:text-blue-600 transition">Tarif Transaksi</a>
                     <a href="#contact" class="hover:text-blue-600 transition">Kontak</a>
                 </div>
             </div>
@@ -43,25 +107,25 @@
                 <p class="text-lg md:text-xl text-blue-100/80 mb-10 max-w-xl font-light">
                     Solusi terpadu untuk segala kebutuhan transaksi digital dan finansial Anda. Membawa layanan perbankan lebih dekat ke lingkungan Anda.
                 </p>
-                
-                <div class="flex flex-wrap gap-6 items-center">
+                <div class="flex flex-wrap gap-4">
                     <div class="bg-white/10 p-4 rounded-xl border border-white/10 backdrop-blur-md">
                         <span class="block text-2xl font-bold">5 Tahun</span>
                         <span class="text-xs text-blue-300 uppercase tracking-wider">Dedikasi Pelayanan</span>
                     </div>
-
-                    <div id="status-container" class="inline-flex items-center gap-4 px-6 py-3 rounded-2xl border transition-all duration-500 backdrop-blur-md">
-                        <div class="relative flex h-3 w-3">
-                            <span id="status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
-                            <span id="status-dot" class="relative inline-flex rounded-full h-3 w-3"></span>
-                        </div>
-                        <div class="flex flex-col">
-                            <div class="flex items-center gap-2">
-                                <span id="status-text" class="text-xs font-black uppercase tracking-[0.2em]">Checking...</span>
-                            </div>
-                            <span id="time-display" class="text-xl font-black text-white tracking-tighter leading-tight">00:00:00</span>
-                        </div>
-                    </div>
+                    <div id="status-container" class="mt-8 inline-flex items-center gap-4 px-6 py-3 rounded-2xl border backdrop-blur-md transition-all duration-500">
+    <div class="relative flex h-3 w-3">
+        <span id="status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+        <span id="status-dot" class="relative inline-flex rounded-full h-3 w-3"></span>
+    </div>
+    
+    <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+            <span id="status-text" class="text-xs font-black uppercase tracking-[0.2em]">Checking...</span>
+            <span class="text-[10px] opacity-60 uppercase font-bold text-white">| 08:00 - 20:00</span>
+        </div>
+        <span id="time-display" class="text-xl font-black text-white tracking-tighter">00:00:00</span>
+    </div>
+</div>
                 </div>
             </div>
             <div class="hidden lg:block">
@@ -82,16 +146,16 @@
                 </div>
                 <div class="lg:col-span-2 space-y-8 text-slate-600 text-lg">
                     <p>
-                        Utopia Store telah berdiri sejak tahun 2020. Berawal dari layanan Top Up game, kini kami memperluas jangkauan layanan untuk memudahkan akses pembayaran digital secara menyeluruh.
+                        Utopia Store telah berdiri sejak tahun 2020. Berawal dari layanan Top Up game, kini setelah 5 tahun bertransformasi, kami memperluas jangkauan layanan untuk memudahkan akses pembayaran digital secara menyeluruh bagi masyarakat sekitar.
                     </p>
                     <div class="grid md:grid-cols-2 gap-8 pt-6">
                         <div class="p-8 bg-white rounded-3xl shadow-sm border border-slate-100 hover:shadow-md transition">
                             <h3 class="font-bold text-blue-900 mb-4 text-xl underline decoration-blue-500 decoration-4">Visi</h3>
-                            <p class="text-sm">Mengakomodasi segala keperluan masyarakat akan kemudahan akses layanan digital, mulai dari cetak karya hingga sistem keuangan modern.</p>
+                            <p class="text-sm">Mengakomodasi segala keperluan masyarakat akan kemudahan akses layanan berbasis digital, mulai dari cetak karya, dokumentasi udara, hingga sistem keuangan digital yang modern.</p>
                         </div>
                         <div class="p-8 bg-blue-900 text-white rounded-3xl shadow-xl">
                             <h3 class="font-bold mb-4 text-xl">Misi Strategis</h3>
-                            <p class="text-sm opacity-80">Menghadirkan ekosistem perbankan untuk memudahkan transaksi keuangan tanpa perlu menempuh perjalanan jauh ke pusat kota.</p>
+                            <p class="text-sm opacity-80">Menghadirkan ekosistem perbankan (mirip BRI Link) untuk memudahkan transaksi keuangan tanpa perlu menempuh perjalanan jauh ke pusat kota atau bank.</p>
                         </div>
                     </div>
                 </div>
@@ -99,123 +163,316 @@
         </div>
     </section>
 
+    <section class="py-12 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="bg-white rounded-[2rem] p-8 shadow-sm border border-slate-100 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div class="flex items-center gap-6 text-center md:text-left">
+                <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center text-3xl">
+                    🕒
+                </div>
+                <div>
+                    <h4 class="text-2xl font-extrabold text-slate-900 leading-tight">Jam Operasional Store</h4>
+                    <p class="text-slate-500 italic">Melayani Anda dengan sepenuh hati setiap harinya.</p>
+                </div>
+            </div>
+            
+            <div class="flex items-center gap-4 bg-slate-50 px-8 py-4 rounded-2xl border border-slate-200">
+                <div class="text-right">
+                    <span class="block text-[10px] font-black uppercase tracking-widest text-blue-600">Senin - Minggu</span>
+                    <span class="text-3xl font-black text-slate-800 tracking-tighter">08:00 - 20:00</span>
+                </div>
+                <div class="h-10 w-[2px] bg-slate-200 hidden md:block"></div>
+                <div class="hidden md:block">
+                    <span class="inline-flex items-center rounded-full bg-green-100 px-3 py-1 text-xs font-bold text-green-700 ring-1 ring-inset ring-green-600/20">
+                        Open Now
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
     <section id="services" class="py-24 bg-slate-100 px-6">
         <div class="max-w-7xl mx-auto text-center mb-16">
             <h2 class="text-4xl font-extrabold mb-4 tracking-tight">Ekosistem Layanan Kami</h2>
             <p class="text-slate-500 italic">Solusi Digital & Finansial dalam Satu Atap</p>
         </div>
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="p-1 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] shadow-xl">
+            <div class="p-1 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-[2rem] shadow-xl hover:scale-[1.02] transition duration-300">
                 <div class="bg-white p-8 rounded-[1.9rem] h-full">
                     <h4 class="font-black text-xl mb-6 text-slate-800 uppercase tracking-tighter">Financial Service</h4>
-                    <ul class="space-y-3 text-sm font-medium text-slate-600">
-                        <li>✔ Transfer Bank (BI-Fast)</li>
-                        <li>✔ Setor & Tarik Tunai</li>
-                        <li>✔ Pembayaran PPOB & BPJS</li>
-                        <li>✔ Virtual Account All Bank</li>
+                    <ul class="space-y-4 text-sm font-medium text-slate-600">
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer Bank (BI-Fast)</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer Bank BCA</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer Bank BRI</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer Bank BNI</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer Bank Mandiri</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Transfer RDN & Virtual Account</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Setor & Tarik Tunai</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Pembayaran PPOB</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Pembayaran BPJS Kesehatan</li>
+                        <li class="flex items-center"><span class="mr-3 text-blue-600">✔</span> Pembayaran BPJS Ketenagakerjaan</li>
                     </ul>
                 </div>
             </div>
-            <div class="p-1 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[2rem] shadow-xl">
+            <div class="p-1 bg-gradient-to-br from-indigo-600 to-purple-700 rounded-[2rem] shadow-xl hover:scale-[1.02] transition duration-300">
                 <div class="bg-white p-8 rounded-[1.9rem] h-full">
                     <h4 class="font-black text-xl mb-6 text-slate-800 uppercase tracking-tighter">Digital Creative</h4>
-                    <ul class="space-y-3 text-sm font-medium text-slate-600">
-                        <li>📑 Digital Print & Design</li>
-                        <li>📑 Jasa Pembuatan CV (ATS/Creative)</li>
-                        <li>📑 Cetak Undangan Digital</li>
-                        <li>📑 Drone Capture (Coming Soon)</li>
+                    <ul class="space-y-4 text-sm font-medium text-slate-600">
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Utopia Digital Print & Design</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Utopia Sky Capture (Drone) Cooming Soon</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Jasa Pembuatan CV ATS</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Jasa Pembuatan CV Creative</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Jasa Cetak Dokumen Tertentu</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Cetak Karya & Undangan Digital</li>
+                        <li class="flex items-center"><span class="mr-3 text-indigo-600">📑</span> Management & Engagement</li>
                     </ul>
                 </div>
             </div>
-            <div class="p-1 bg-gradient-to-br from-slate-700 to-slate-900 rounded-[2rem] shadow-xl">
+            <div class="p-1 bg-gradient-to-br from-slate-700 to-slate-900 rounded-[2rem] shadow-xl hover:scale-[1.02] transition duration-300">
                 <div class="bg-white p-8 rounded-[1.9rem] h-full">
                     <h4 class="font-black text-xl mb-6 text-slate-800 uppercase tracking-tighter">Digital Solutions</h4>
-                    <ul class="space-y-3 text-sm font-medium text-slate-600">
-                        <li>💎 Top Up Game All Provider</li>
-                        <li>💳 Top Up E-Wallet (Dana, OVO, dll)</li>
-                        <li>🛍️ Mitra Shopee Partner</li>
-                        <li>🌐 IoT Planner</li>
+                    <ul class="space-y-4 text-sm font-medium text-slate-600">
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💎</span> Top Up Game & Item</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💎</span> Top Up Game Free Fire</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💎</span> Top Up Game Mobile Legends</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💳</span> Cek Tagihan (GRATIS)</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💳</span> Top Up E-Wallet All Provider</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💳</span> Top Up Dana</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💳</span> Top Up GoPay</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">💳</span> Top Up Shopee pay</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">🛍️</span> Mitra Shopee Partner</li>
+                        <li class="flex items-center"><span class="mr-3 text-slate-800">🌐</span> IoT Planner</li>
                     </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="py-20 bg-red-600 text-white px-6">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-3xl font-black mb-8 uppercase italic tracking-tighter">Standard Operating Procedure</h2>
-            <div class="bg-white/10 backdrop-blur-md p-8 rounded-[2rem] border border-white/20">
-                <p class="text-xl font-bold uppercase">TIDAK MELAYANI KASBON / HUTANG.</p>
-                <p class="mt-4 opacity-80">Seluruh transaksi wajib dilakukan secara fisik di store demi keamanan finansial bersama.</p>
+    <section id="game-pricing" class="py-24 px-6 bg-slate-50">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-extrabold text-blue-900 mb-4 tracking-tight">Katalog Top-Up Game</h2>
+            <p class="text-slate-500 italic">Proses Cepat, Aman, dan Terpercaya</p>
+        </div>
+
+        <div class="grid lg:grid-cols-2 gap-12">
+            <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
+                <div class="bg-[#f424cf] p-8 text-white">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-black italic uppercase tracking-tighter">Mobile Legends</h3>
+                        <span class="text-[10px] bg-white/20 px-3 py-1 rounded-full font-bold">MOONTON / CODASHOP</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">28 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 10.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">44 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 14.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">59 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 18.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">85 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 26.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">170 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 51.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">240 Diamond</span>
+                            <span class="font-black text-blue-600">IDR 70.000</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 space-y-3">
+                        <div class="bg-gradient-to-r from-pink-500 to-purple-600 p-4 rounded-2xl text-white flex justify-between items-center shadow-lg">
+                            <span class="font-bold">Starlight Member</span>
+                            <span class="font-black">IDR 165.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white rounded-[2.5rem] shadow-xl border border-slate-100 overflow-hidden">
+                <div class="bg-[#ff4646] p-8 text-white">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-black italic uppercase tracking-tighter">Free Fire</h3>
+                        <span class="text-[10px] bg-white/20 px-3 py-1 rounded-full font-bold">GARENA / CODASHOP</span>
+                    </div>
+                </div>
+                <div class="p-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">50💎</span>
+                            <span class="font-black text-red-600">IDR 10.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">70💎</span>
+                            <span class="font-black text-red-600">IDR 12.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">100💎</span>
+                            <span class="font-black text-red-600">IDR 17.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">140💎</span>
+                            <span class="font-black text-red-600">IDR 22.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">355💎</span>
+                            <span class="font-black text-red-600">IDR 55.000</span>
+                        </div>
+                        <div class="flex justify-between p-3 bg-slate-50 rounded-xl border border-slate-100">
+                            <span class="font-bold text-slate-700">720💎</span>
+                            <span class="font-black text-red-600">IDR 105.000</span>
+                        </div>
+                    </div>
+                    <div class="mt-6">
+                        <div class="bg-slate-900 p-4 rounded-2xl text-white flex justify-between items-center border-l-4 border-red-500">
+                            <span class="font-bold">7.290 Diamond</span>
+                            <span class="font-black text-red-400">IDR 1.010.000</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <section id="pricing" class="py-24 px-6 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-4xl font-extrabold text-center mb-16 italic tracking-tight text-blue-900">Struktur Biaya Administrasi</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-10">
+                <div class="bg-slate-50 rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="bg-blue-900 p-6 text-white flex justify-between items-center">
+                        <span class="font-bold tracking-widest uppercase text-sm">Transfer Bank / E-Wallet</span>
+                        <span class="text-xs bg-blue-500 px-3 py-1 rounded-full font-bold">BI-Fast Network</span>
+                    </div>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-xs font-bold text-slate-400 uppercase border-b border-slate-200">
+                                <td class="p-6">Nominal Transaksi</td>
+                                <td class="p-6 text-right">Biaya Admin</td>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 10.000 - Rp 50.000</td><td class="p-5 text-right font-black text-blue-700">Rp 3.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 51.000 - Rp 500.000</td><td class="p-5 text-right font-black text-blue-700">Rp 5.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 501.000 - Rp 1.000.000</td><td class="p-5 text-right font-black text-blue-700">Rp 10.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 1.001.000 - Rp 1.500.000</td><td class="p-5 text-right font-black text-blue-700">Rp 15.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 1.501.000 - Rp 2.000.000</td><td class="p-5 text-right font-black text-blue-700">Rp 20.000</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="bg-slate-50 rounded-[2rem] border border-slate-200 overflow-hidden shadow-sm">
+                    <div class="bg-slate-900 p-6 text-white flex justify-between items-center">
+                        <span class="font-bold tracking-widest uppercase text-sm">Setor & Tarik Tunai</span>
+                        <span class="text-xs bg-slate-700 px-3 py-1 rounded-full font-bold">Physical Cash</span>
+                    </div>
+                    <table class="w-full">
+                        <thead>
+                            <tr class="text-xs font-bold text-slate-400 uppercase border-b border-slate-200">
+                                <td class="p-6">Nominal Transaksi</td>
+                                <td class="p-6 text-right">Biaya Admin</td>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-100">
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 50.000 - Rp 500.000</td><td class="p-5 text-right font-black text-slate-800">Rp 10.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 501.000 - Rp 1.000.000</td><td class="p-5 text-right font-black text-slate-800">Rp 15.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 1.001.000 - Rp 1.500.000</td><td class="p-5 text-right font-black text-slate-800">Rp 20.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-5 font-semibold">Rp 1.501.000 - Rp 2.000.000</td><td class="p-5 text-right font-black text-slate-800">Rp 25.000</td></tr>
+                            <tr class="hover:bg-white transition"><td class="p-4 italic text-slate-400 text-xs">Menyesuaikan untuk nominal lainnya</td><td class="p-4 text-right">...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="mt-12 grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-6 bg-slate-900 text-white rounded-2xl text-center border-b-4 border-blue-500">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Hitam Putih</p>
+                    <p class="text-xl font-extrabold">Rp 500 / lbr</p>
+                </div>
+                <div class="p-6 bg-blue-600 text-white rounded-2xl text-center shadow-lg shadow-blue-200">
+                    <p class="text-[10px] uppercase font-bold text-blue-200 mb-2 tracking-widest">Berwarna</p>
+                    <p class="text-xl font-extrabold">Rp 1.000 / lbr</p>
+                </div>
+                <div class="p-6 bg-white border border-slate-200 rounded-2xl text-center">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Cetak Foto</p>
+                    <p class="text-sm font-bold italic">Tergantung Ukuran</p>
+                </div>
+                <div class="p-6 bg-white border border-slate-200 rounded-2xl text-center">
+                    <p class="text-[10px] uppercase font-bold text-slate-400 mb-2 tracking-widest">Jasa Dokumen</p>
+                    <p class="text-sm font-bold text-red-500">Akses Terbatas</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sop" class="py-24 bg-red-600 text-white px-6">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-3xl font-black mb-12 uppercase tracking-tighter text-center italic">Standard Operating Procedure</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="text-4xl font-black opacity-30">01</div>
+                        <p class="text-lg font-semibold italic">Kami tidak menerima Transfer dengan kode unik selain layanan PPOB resmi (Listrik, BPJS, Asuransi, dll).</p>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-4xl font-black opacity-30">02</div>
+                        <p class="text-lg font-semibold">Kirim file yang akan di cetak melalui nomor whatsapp 085196281292, bayar saat mengambil hasil cetak.</p>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="text-4xl font-black opacity-30">03</div>
+                        <p class="text-xl font-extrabold uppercase tracking-tight">KASBON TIDAK DIPERBOLEHKAN. Utopia Store tidak melayani sistem "Transfer Sekarang Bayar Nanti".</p>
+                    </div>
+                </div>
+                <div class="bg-white/10 p-10 rounded-[2.5rem] border border-white/20 backdrop-blur-md">
+                    <h4 class="text-xl font-black mb-4 underline italic">Keamanan Transaksi</h4>
+                    <p class="text-lg mb-6 leading-relaxed">Seluruh transaksi wajib dilakukan secara fisik di store. Mohon maaf, kami tidak melayani transaksi melalui WhatsApp demi keamanan finansial bersama.</p>
+                    <div class="px-4 py-2 bg-red-800 rounded-full inline-block text-[10px] font-bold tracking-widest">OFFICIAL STORE ONLY</div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer id="contact" class="bg-slate-900 text-slate-400 pt-24 pb-12 px-6">
-        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-12 border-b border-slate-800 pb-20 mb-12">
-            <div>
+        <div class="max-w-7xl mx-auto grid md:grid-cols-4 gap-12 border-b border-slate-800 pb-20 mb-12">
+            <div class="md:col-span-2">
                 <h4 class="text-white text-2xl font-black italic mb-6">UTOPIA PROJECT <br><span class="text-blue-500 font-light not-italic">INDUSTRIES</span></h4>
-                <p class="text-sm">Memberikan layanan transaksi digital yang legal dan terpercaya sejak 2020.</p>
+                <p class="max-w-sm mb-6 text-sm">Dioperasikan oleh PT. Utopia Digital Technology. Memberikan layanan transaksi digital yang legal secara hukum dan terpercaya.</p>
+                <div class="inline-block px-3 py-1 bg-slate-800 rounded text-[10px] font-bold tracking-widest text-white italic">LEGAL BUSINESS ENTITY</div>
             </div>
             <div>
-                <h5 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Kontak</h5>
-                <ul class="text-sm space-y-3">
-                    <li>📞 0851-9628-1292 (WhatsApp)</li>
-                    <li>📧 utopiastore.idn@gmail.com</li>
-                    <li>📍 Buka Setiap Hari: 08:00 - 20:00 WIB</li>
+                <h5 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Kontak Resmi</h5>
+                <ul class="text-sm space-y-4">
+                    <li class="flex items-center gap-3">🕒 <span>Setiap Hari: 08:00 - 20:00 WIB</span></li>
+                    <li class="flex items-center gap-3">📞 <span>+62-3460-1373</span></li>
+                    <li class="flex items-center gap-3">📞 <span>0851-9628-1292 (WhatsApp)</span></li>
+                    <li class="flex items-center gap-3">📧 <span class="text-blue-400">utopiastore.idn@gmail.com</span></li>
+                    <li class="flex items-center gap-3">🌐 <span>utopiaproject.id</span></li>
                 </ul>
             </div>
             <div>
-                <h5 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Legalitas</h5>
-                <p class="text-[10px] font-bold opacity-50 uppercase tracking-widest">Operated by PT. Utopia Digital Technology. Secured Transaction System.</p>
+                <h5 class="text-white font-bold mb-6 uppercase text-xs tracking-widest">Mitra Terpadu</h5>
+                <p class="text-[10px] leading-relaxed uppercase font-bold tracking-tighter opacity-60">
+                    BRI, BNI, BCA, Mandiri, Gopay, DANA, OVO, Shopee, MAF, Adira, WOM, FIFGROUP.
+                </p>
             </div>
         </div>
-        <div class="text-center text-[10px] font-bold tracking-[0.3em] uppercase opacity-40">
-            &copy; 2026 Utopia Store. All Rights Reserved.
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold tracking-[0.2em]">
+            <p>&copy; 2026 Utopia Store. Seluruh Hak Cipta Dilindungi.</p>
+            <p class="mt-4 md:mt-0 italic opacity-50">Exploring opportunities for collaboration</p>
         </div>
     </footer>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            function updateStoreStatus() {
-                const now = new Date();
-                const hours = now.getHours();
-                
-                const container = document.getElementById('status-container');
-                const ping = document.getElementById('status-ping');
-                const dot = document.getElementById('status-dot');
-                const statusText = document.getElementById('status-text');
-                const timeDisplay = document.getElementById('time-display');
-
-                if (!container || !timeDisplay) return;
-
-                // Update Jam
-                const timeString = now.toLocaleTimeString('id-ID', { 
-                    hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit' 
-                }).replace(/\./g, ':');
-                timeDisplay.innerText = timeString + " WIB";
-
-                // Logika Jam Buka (08:00 - 20:00)
-                const isOpen = hours >= 8 && hours < 20;
-
-                if (isOpen) {
-                    container.className = "inline-flex items-center gap-4 px-6 py-3 rounded-2xl border border-green-400/30 bg-green-500/20 backdrop-blur-md transition-all duration-500";
-                    ping.className = "animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75";
-                    dot.className = "relative inline-flex rounded-full h-3 w-3 bg-green-500";
-                    statusText.innerText = "Store is Open Now";
-                    statusText.className = "text-xs font-black uppercase tracking-[0.2em] text-green-400";
-                } else {
-                    container.className = "inline-flex items-center gap-4 px-6 py-3 rounded-2xl border border-red-400/30 bg-red-500/20 backdrop-blur-md transition-all duration-500";
-                    ping.className = "absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-0";
-                    dot.className = "relative inline-flex rounded-full h-3 w-3 bg-red-500";
-                    statusText.innerText = "Store is Closed";
-                    statusText.className = "text-xs font-black uppercase tracking-[0.2em] text-red-400";
-                }
-            }
-
-            setInterval(updateStoreStatus, 1000);
-            updateStoreStatus();
-        });
-    </script>
 </body>
 </html>

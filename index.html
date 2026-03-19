@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -13,6 +14,68 @@
         .text-gradient { background: linear-gradient(to right, #3b82f6, #60a5fa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
     </style>
 </head>
+<script>
+    function updateStoreStatus() {
+        const now = new Date();
+        const hours = now.getHours();
+        const minutes = now.getMinutes();
+        const seconds = now.getSeconds();
+        
+        // Elemen UI
+        const container = document.getElementById('status-container');
+        const ping = document.getElementById('status-ping');
+        const dot = document.getElementById('status-dot');
+        const statusText = document.getElementById('status-text');
+        const timeDisplay = document.getElementById('time-display');
+
+        // Format waktu digital (00:00:00)
+        const timeString = now.toLocaleTimeString('id-ID', { 
+            hour12: false, 
+            hour: '2-digit', 
+            minute: '2-digit', 
+            second: '2-digit' 
+        });
+        timeDisplay.innerText = timeString + " WIB";
+
+        // Logika Jam Operasional (08:00 - 19:59)
+        const isOpen = hours >= 8 && hours < 20;
+
+        if (isOpen) {
+            // Tampilan saat BUKA (Hijau)
+            container.classList.remove('bg-red-500/20', 'border-red-400/30');
+            container.classList.add('bg-green-500/20', 'border-green-400/30');
+            
+            ping.classList.remove('bg-red-400');
+            ping.classList.add('bg-green-400');
+            
+            dot.classList.remove('bg-red-500');
+            dot.classList.add('bg-green-500');
+            
+            statusText.innerText = "Store is Open Now";
+            statusText.classList.add('text-green-400');
+            statusText.classList.remove('text-red-400');
+        } else {
+            // Tampilan saat TUTUP (Merah)
+            container.classList.remove('bg-green-500/20', 'border-green-400/30');
+            container.classList.add('bg-red-500/20', 'border-red-400/30');
+            
+            ping.classList.remove('bg-green-400', 'animate-ping'); // Matikan animasi ping saat tutup agar lebih tenang
+            ping.classList.add('bg-red-400');
+            
+            dot.classList.remove('bg-green-500');
+            dot.classList.add('bg-red-500');
+            
+            statusText.innerText = "Store is Closed";
+            statusText.classList.add('text-red-400');
+            statusText.classList.remove('text-green-400');
+        }
+    }
+
+    // Jalankan setiap detik
+    setInterval(updateStoreStatus, 1000);
+    // Jalankan langsung saat halaman dimuat
+    updateStoreStatus();
+</script>
 <body class="bg-slate-50 text-slate-900 leading-relaxed">
 
     <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
@@ -49,6 +112,20 @@
                         <span class="block text-2xl font-bold">5 Tahun</span>
                         <span class="text-xs text-blue-300 uppercase tracking-wider">Dedikasi Pelayanan</span>
                     </div>
+                    <div id="status-container" class="mt-8 inline-flex items-center gap-4 px-6 py-3 rounded-2xl border backdrop-blur-md transition-all duration-500">
+    <div class="relative flex h-3 w-3">
+        <span id="status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+        <span id="status-dot" class="relative inline-flex rounded-full h-3 w-3"></span>
+    </div>
+    
+    <div class="flex flex-col">
+        <div class="flex items-center gap-2">
+            <span id="status-text" class="text-xs font-black uppercase tracking-[0.2em]">Checking...</span>
+            <span class="text-[10px] opacity-60 uppercase font-bold text-white">| 08:00 - 20:00</span>
+        </div>
+        <span id="time-display" class="text-xl font-black text-white tracking-tighter">00:00:00</span>
+    </div>
+</div>
                 </div>
             </div>
             <div class="hidden lg:block">
